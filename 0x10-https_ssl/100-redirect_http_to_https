@@ -10,14 +10,14 @@ defaults
 	timeout client  30s
 	timeout server  30s
 
-frontend th3gr00t-tech-frontend
+frontend 
 	bind *:80
-	bind *:443 ssl crt /etc/haproxy/certs/th3gr00t.tech.pem
+	bind *:443 ssl crt /etc/haproxy/haproxy.cfg
 	http-request redirect scheme https code 301 unless { ssl_fc }
 	http-request set-header X-Forwarded-Proto https
-	default_backend th3gr00t-tech-backend
+	default_backend 
 
-backend th3gr00t-tech-backend
+backend 
 	balance roundrobin
 	server 59011-web-01 34.224.83.234:80 check
 	server 59011-web-02 54.175.113.237:80 check
